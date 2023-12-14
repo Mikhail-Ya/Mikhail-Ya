@@ -306,49 +306,7 @@ const messageWin = new Vue({
         			<button @click="closeMes()">Закрыть сообщение</button>
     		  </div>`
 })
-/*const partDisplay = new Vue({
-	el:'#part_info',
-	data:{
-		imgUrl:'',
-		price:'50000 euro',
-		life:'0/5000',
-		requir:[
-				{name:'njxyjcnm',value:'2112'},
-				{name:'dfsh;vz',value:'5213'},
-				{name:'fdsjv',value:'56561'},
-				{name:'kvk',value:'32'},
-				{name:'ds564',value:'14'}
-				],
-		adds:[  {name:'fslv[s',value:'546'},
-				{name:'fsd',value:'21321'},
-				{name:'fsddsf',value:'231'},
-				{name:'fsfsdf',value:'132132'}
-			 	],
-		urlInfo:'',
-		status: true
-	},
-	methods:{
-		closes(){
-			this.status=false;
-		}
-	},
-	template:`<div v-if="status" id="part_info">
-            	<img :src="imgUrl">
-            	<div class="list_head">{{name}}</div>
-            	<div class="list_head">Цена: <span>{{price}}</span></div>
-            	<div class="list_head">Долговечность: <span>{{life}}</span></div>
-            	<span class="list_head">Требования:</span>
-            	<ul class="list_modif">
-                	<li v-for="str in requir"><span>{{str.name}}</span><span>{{str.value}}</span></li>
-            	</ul>
-            	<span class="list_head">Добавляет:</span>
-            	<ul class="list_modif">
-                	<li v-for="str in adds"><span>{{str.name}}</span><span>{{str.value}}</span></li>
-            	</ul>
-            	<span style="grid-column:1/3;">Остальные подробности <a href="#">Здесь...</a></span>
-            	<button @click="closes()">Закрыть окно</button>
-        	</div>`
-})*/
+
 setTimeout(()=>{
 			topsElemetsBar.obnov([
 				{url:"http://img.starcombats.com/top/top100.gif",
@@ -366,7 +324,7 @@ setTimeout(()=>{
 				])
 				messageWin.setMessage(`Мир Звездных Боев, или "StarCombats" - это онлайновая RPG игра, посвященная космическим сражениям.
 						 Мы постарались сделать игру, которая жила бы своей жизнью и развивалась бы вместе с игроками и так, как хотят игроки.`,true)
- /*iskin_req()*/},3000)
+ 		},3000)
 let gettopList=()=>{
 	var responList =[
 				 {num:'1',  klanImg:'http://img.starcombats.com/clans/Dark_Empire1.gif', 
