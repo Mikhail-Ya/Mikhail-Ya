@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script language="JavaScript" type="text/JavaScript" src="Subsys_JsHttpRequest.js">
+    </script>
+    <link rel="stylesheet" href="info_style.css">
+    <!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
+    <title>Document</title>
+</head>
+<body >
+    <header>
+        <div class="info__user--state_left">
+            <div class="user__state--info">
+                <div class="state__info--klan">
+                    <img src="http://img.starcombats.com/clans/Silve_Age1.gif" alt="" width="24" height="15">
+                </div>
+                <div class="state__info--sklon">
+                    <img src="http://img.starcombats.com/tendencygrey_evolution.gif" alt="" width="15" height="15">
+                </div>
+                <div class="state__info--nikname">
+                    <span>Снеговик_ (20)</span>
+                </div>
+                <div class="state__info--hp indicator_info-up">
+                    <img src="info_img/HPicon.png" alt="жизнь" width="14" height="10">
+                    <div class="info--hp_indicator">
+                        <div style="width: 100%;" class="indicator_green"></div>
+                    </div>
+                    <span>211918/211918</span>
+                </div>
+                <div class="state__info--en indicator_info-up">
+                    <img src="info_img/ENicon.png" alt="энергия" width="14" height="10">
+                    <div class="info--en_indicator">
+                        <div style="width: 100%;" class="indicator_blue"></div>
+                    </div>
+                    <span>5930/5930</span>
+                </div>
+                <div class="state__info--licenses">
+                    <img src="http://img.starcombats.com/status_tester.gif" alt="Тестер SC
+                        Дата окончания: 13.07.2030 22:56" title="Тестер SC
+                        Дата окончания: 13.07.2030 22:56">
+                    <img src="http://img.starcombats.com/status_tutor.gif" alt="Инструктор
+                        Дата окончания: 23.03.2027 01:21" title="Инструктор
+                        Дата окончания: 23.03.2027 01:21">
+                    <img src="http://img.starcombats.com/status_creative.gif" alt="Креатор SC
+                        Дата окончания: 17.12.2034 20:10" title="Креатор SC
+                        Дата окончания: 17.12.2034 20:10">
+                    <img src="http://img.starcombats.com/status_assasin.gif" alt="Лицензия на Убийство
+                        Дата окончания: 20.09.2021 12:03" title="Лицензия на Убийство
+                        Дата окончания: 20.09.2021 12:03">
+                    <img src="http://img.starcombats.com/status_trade.gif" alt="Брокер
+                        Дата окончания: 24.09.2021 22:47" title="Брокер
+                        Дата окончания: 24.09.2021 22:47">
+                    <a href="#"><img src="info_img/married1.gif" alt="женат на Рубедо" title="женат на Рубедо"></a>
+                </div>
+            </div>
+            <div id="stats-title">
+                <span v-if="states" class="stats_ship" style="display: grid;">Экран не активен</span>
+                <img src="http://img.starcombats.com/characteristics/inf2.gif" alt="статы">
+            </div>
+        </div>
+        <div class="info__user--state_ship">
+            <div class="state_ship--coordinates" >
+                <span><b>foggystation</b></span>
+                <span><b>Координаты:</b> персонаж не в сети</span>
+            </div>
+            <div class="state_ship--info">
+                <span>Персонаж заблокирован. Причина: Ибо нефиг!</span>
+            </div>
+        </div>
+        <div class="info__user--state_right">
+            <div class="user__status--info">
+                <a href="http://library.starcombats.com/vip.html" target="_blank">
+                    <img src="./info_img/vip2.png" alt="VIP Время он-лайн: 38755 час(ов)" title="VIP Время он-лайн: 38755 час(ов)">
+                </a>
+                <a href="http://www.starcombats.com/top/top100.php?t=prof&amp;type=pirate&amp;id=1189944" target="_blank">
+                    <img src="http://img.starcombats.com/skills/pirate_3.gif" alt="Пират (3 уровень)" title="Пират (3 уровень)">
+                </a>
+                <a href="http://www.starcombats.com/top/top100.php?t=prof&amp;type=driller&amp;id=1189944" target="_blank">
+                    <img src="http://img.starcombats.com/skills/driller_7.gif" alt="Старатель (7 уровень)" title="Старатель (7 уровень)">
+                </a>
+                <a href="http://www.starcombats.com/top/top100.php?t=prof&amp;type=iskintrainer&amp;id=1189944" target="_blank">
+                    <img src="http://img.starcombats.com/skills/iskintrainer_6.gif" alt="Кибернетик (6 уровень)" title="Кибернетик (6 уровень)">
+                </a>
+                <a href="http://www.starcombats.com/top/top100.php?t=clan&amp;type=corporations" target="_blank">
+                    <img src="http://img.starcombats.com/alliance/nebo_big.gif" alt="Корпорация &quot;Восьмое Небо&quot;: Глава" title="Корпорация &quot;Восьмое Небо&quot;: Глава">
+                </a>
+            </div>
+            <div class="user__respect--info">
+                <span>Респектометр: <i>306</i> ед.</span>
+                <div class="respect_info--container">
+                    <div class="respect_plus">+</div>
+                    <div class="respect_indicator--plus" style="width: 66%;"></div>
+                    <!-- <div class="respect_indicatir--space"></div> -->
+                    <div class="respect_indicator--minus" style="width: 34%;"></div>
+                    <div class="respect_minus">-</div>
+                </div>
+            </div>
+            <div id="top_info-title">
+                <span class="top_info--title">Выберите топ</span>
+                <img src="http://img.starcombats.com/top/top100.gif" alt="топ 100" title="топ 100">
+            </div>
+        </div>
+    </header>
+    <main id="body_main">
+        <section id="info__property">
+            <div id="property__bar"></div>
+            <div id="property__display"></div>
+        </section>
+        <section id="info__ship">
+        </section>
+        <section id="info__iskin"></section>
+        <section id="info__top">
+            <div id="top--display">
+                <ul class="top_display--list"></ul>            
+            </div>
+            <div id="top-bar"></div>
+        </section>
+         <!-- <div id="part_info"></div>  -->
+    </main>
+    <footer>
+        <section class="footer__left--display">
+            <p>пересечения айпи с Рубедо
+                <br>
+            Грехи других судить вы так усердно рвётесь, начните со своих и до чужих не доберётесь. У. Шекспир
+                <br><br>
+            Любую депрессию надо встречать с улыбкой. Депрессия подумает, что вы идиот и сбежит. © Роберт Де Ниро
+                <br><br>
+            Человек очень смущается, когда говорит от своего лица. Дайте ему маску, и он скажет вам всю правду.
+                <br><br>
+            Чтобы ясно видеть,часто достаточно бывает лишь изменить направление взгляда. /Антуан де Сент-Экзюпери/
+                <br><br>
+            Что бы мы ни говорили, люди верят только в то, во что хотят. (Харуки Мураками)</p>
+        </section>
+        <section class="footer__left--btn"></section>
+        <section class="footer__center--display">
+            <ul class="center_display--info">
+                <img class="center_display--avatar" src="http://img.starcombats.com/avatars/0/1573.gif" alt="*Mihail" title="*Mihail*">
+                <li class="display__user--name">Имя: <span>М</span></li>
+                <li class="display__user--name">Пол: <span>мужской</span></li>
+                <li class="display__user--name">Город: <span>М</span></li>
+                <li class="display__user--name">Дата рождения: <span>initio temporis</span></li>
+                <li class="display__user--name">Место рождения: <span>source</span></li>
+            </ul>
+        </section>
+        <section class="footer__center--btn"></section>
+        <section class="footer__right--display">
+            <div v-if="s" class="top_display--awards" style="display: none;">
+                    <img src="http://img.starcombats.com/cups/cup_honor.gif" alt="За Заслуги" title="За Заслуги">
+                    <img src="http://img.starcombats.com/cups/cup_oldschool2011_ptcp.gif" alt="Участник турнира Old School Fighter 2011" title="Участник турнира Old School Fighter 2011">
+                    <img src="http://img.starcombats.com/cups/cup_photomem2015.gif" alt="Участник конкурса Фотомем 2015" title="Участник конкурса Фотомем 2015">
+                    <img src="http://img.starcombats.com/others/mech_gold.gif" alt="Слиток Золота (1)" title="Слиток Золота (1)">
+                    <img src="http://img.starcombats.com/others/art_upgrade.gif" alt="Сертификат на апгрейд Артефактов (2)" title="Сертификат на апгрейд Артефактов (2)">
+            </div>
+            <div class="display_foto">
+                <div class="display_foto--cont">
+                    <a href="http://foggystation.starcombats.com/photos/view.php?id=1189944&amp;photo_id=7383" target="_blank">
+                        <img src="http://img.starcombats.com/upload/photos/1189944/s_3cc240fc7def6456bb7b761adc1273ac.jpg" alt="шутка или правда" title="шутка или правда">
+                    </a>
+                </div>
+                <div class="display_foto--cont">
+                    <a href="http://foggystation.starcombats.com/photos/view.php?id=1189944&amp;photo_id=7383" target="_blank">
+                        <img src="http://img.starcombats.com/upload/photos/1189944/s_3cc240fc7def6456bb7b761adc1273ac.jpg" alt="шутка или правда" title="шутка или правда">
+                    </a>
+                </div>
+                <div class="display_foto--cont">
+                    <a href="http://foggystation.starcombats.com/photos/view.php?id=1189944&amp;photo_id=7383" target="_blank">
+                        <img src="http://img.starcombats.com/upload/photos/1189944/s_3cc240fc7def6456bb7b761adc1273ac.jpg" alt="шутка или правда" title="шутка или правда">
+                    </a>
+                </div>
+                <div class="display_foto--cont">
+                    <a href="http://foggystation.starcombats.com/photos/view.php?id=1189944&amp;photo_id=7383" target="_blank">
+                        <img src="http://img.starcombats.com/upload/photos/1189944/s_3cc240fc7def6456bb7b761adc1273ac.jpg" alt="шутка или правда" title="шутка или правда">
+                    </a>
+                </div>
+                <div class="display_foto--cont">
+                    <a href="http://foggystation.starcombats.com/photos/view.php?id=1189944&amp;photo_id=7383" target="_blank">
+                        <img src="http://img.starcombats.com/upload/photos/1189944/s_3cc240fc7def6456bb7b761adc1273ac.jpg" alt="шутка или правда" title="шутка или правда">
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="footer__right--btn"></section>
+    </footer>
+    <div id="message_sistem"></div>
+    <script src="main.js"></script>
+</body>
+</html>
