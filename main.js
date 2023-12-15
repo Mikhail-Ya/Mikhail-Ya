@@ -9,7 +9,45 @@ const mainBody = new Vue({
          ship: true,
 	}
 })
-
+const respectInfo = new Vue({
+	el:'#respect--info',
+	data:{  respStr:'306',
+			respProc:10
+			},
+	methods:{
+		setRespect(elem){
+			this.respStr = elem
+			this.respProc = 100/500*Number(elem)
+		},
+		toggleResp(num){
+			if(confirm('Вы действительно хотите изменить значение респекта персонажа Рубедо?'))
+			{
+				var req = new Subsys_JsHttpRequest_Js()
+					req.onreadystatechange = function()
+				{
+					if (req.readyState == 4)
+					{
+						show_result(req.responseJS.text);
+					}
+				}
+				req.open('POST', 'http://foggystation.starcombats.com/ajax/info/info_respect.php', true);
+				req.send({id: 1409213, respect: num, ix: Math.random()});
+					
+			this.respStr = Number(this.respStr) + num
+			this.respProc = 100/500*Number(this.respStr)
+			}
+		}
+	},
+	template:`<div id="respect--info">
+			<span>Респектометр: <i>{{ respStr }}</i> ед.</span>
+			<div class="respect_info--container">
+				<div class="respect_plus" @click="toggleResp(1)">+</div>
+				<div class="respect_indicator--plus" v-bind:style="{width: respProc+'%'}"></div>
+				<div class="respect_indicator--minus" v-bind:style="{width: 100-respProc +'%'}"></div>
+				<div class="respect_minus" @click="toggleResp(-1)">-</div>
+			</div>
+		</div>`
+})
 const propertyDisplay = new Vue({
 	el: '#property__display',
 	data:{ 

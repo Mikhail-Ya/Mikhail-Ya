@@ -194,7 +194,7 @@ li {
     width: 100%;
 }
 
-.user__respect--info {
+#respect--info {
     filter: drop-shadow(0px 0px 0px #9AD5F2);
     color: #9ad5ff;
     font-weight: bold;
