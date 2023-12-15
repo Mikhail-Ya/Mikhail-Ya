@@ -314,8 +314,7 @@ li {
 #property__display {
     grid-column: 3;
 }
-.property_display-show,
-#part_info{
+.property_display-show{
     margin: 0;
     padding: 0 7px;
     height: 100%;
