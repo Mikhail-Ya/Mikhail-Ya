@@ -465,7 +465,13 @@ console.log(text)
 let top_id_show =()=>{
 	
 }
-
+function btn_hover(elem) {
+	elem.setAttribute('src', './info_img/btn_ii_hover.gif');
+  }
+function btn_unhover(elem) {
+	console.log(elem)
+	elem.setAttribute('src', './info_img/btn_ii.gif');
+  }
 function iskin_req()
 { 
   var respons =  { 'virus_name': 'Пролог7','virus_level': '7','virus_born': '2023-09-05 18:59:52','virus_capacity': '1','virus_speed': '25','virus_tactics': '0','virus_intelligence': '0','virus_victories': '1134','virus_loses': '506','virus_avatar': '3','program1_img': 'void','program1_id': '1','program1_life_current': '0','program1_life_max': '0','program1_name': 'Плагин','program2_img': 'void','program2_id': '1','program2_life_current': '0','program2_life_max': '0','program2_name': 'Плагин','program3_img': 'void','program3_id': '1','program3_life_current': '0','program3_life_max': '0','program3_name': 'Плагин','program4_img': 'void','program4_id': '1','program4_life_current': '0','program4_life_max': '0','program4_name': 'Плагин','program5_img': 'void','program5_id': '1','program5_life_current': '0','program5_life_max': '0','program5_name': 'Плагин','program6_img': 'void','program6_id': '1','program6_life_current': '0','program6_life_max': '0','program6_name': 'Плагин','program7_img': 'void','program7_id': '1','program7_life_current': '0','program7_life_max': '0','program7_name': 'Плагин','program8_img': 'void','program8_id': '1','program8_life_current': '0','program8_life_max': '0','program8_name': 'Плагин','energy_max': '10','energy_current': '10' }
