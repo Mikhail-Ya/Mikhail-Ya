@@ -183,7 +183,7 @@ const iskinDisplay = new Vue({
 	methods:{
 		loadData(response){
 				if (response) {
-				this.ii.push(response)
+				//this.ii.push(response)
 				this.ava = 'http://img.starcombats.com/avatars/2/ii_'+ response.virus_avatar +'.gif'
 				let imgip,curren,maxcu,nameip=''
 				ind=0
@@ -271,20 +271,68 @@ const shipDisplay = new Vue({
 					{imgUrl:'http://img.starcombats.com/things/re_1555_to20.gif',
 					name:'Лазер Порядка (20) (артефакт) (UP)',
 					modif:'Встроен имплантант', curren:'860/5000'}],
-		moduls:[{imgUrl:'http://img.starcombats.com/things_new/arch_mod_20_Mihai.gif',
-					name:'Лазер Порядка (20) (артефакт) (UP)',
-					modif:'Встроен имплантант', curren:'860/5000'},
+		moduls:[{name:'Лазер Порядка',url:'http://img.starcombats.com/things_new/art_laser1_to20.gif',
+					lvl:'20',status:'(артефакт)',up:'',
+					modif:'Встроен имплантант', life_current:'860',life_max:'5000'},
 					{imgUrl:'http://img.starcombats.com/things_new/arch_gv_mod_20_Miha.gif',
 					name:'Лазер Порядка (20) (артефакт) (UP)',
 					modif:'Встроен имплантант', curren:'860/5000'},
 					{imgUrl:'http://img.starcombats.com/things_new/arch_mod_20_Miha.gif',
 					name:'Лазер Порядка (20) (артефакт) (UP)',
 					modif:'Встроен имплантант', curren:'860/5000'}],
-		craft_Img:'./info_img/Snow_ship_anim1.gif',
+		craft_img:'./info_img/Snow_ship_anim1.gif',
 		status:true
 	},
 	methods:{
-
+		setElemint(resp){
+			this.craft_img = './info_img/'+ resp.craft_img +'.gif'
+				//let nam,url,lvl,stt,up,mod,cur,max=''
+				ind=0
+				let obrazec={name:'Лазер Порядка',url:'http://img.starcombats.com/things_new/art_laser1_to20.gif',
+					lvl:'20',status:'(артефакт)',up:'',
+					modif:'Встроен имплантант', life_current:'860',life_max:'5000'}
+				this.plagin=[]
+				this.neyro=[]
+			for (let [key, value] of Object.entries(resp)) {
+				var name='';
+				for(var i=0;i<5;i++){
+						name = name + key[i]
+				}
+				switch (name) {
+					case 'gun1':
+					case 'navi':
+					case 'comp':
+					case 'shie':
+						obrazec[ind]=value
+						if(7===ind){
+							this.leftBar.push(obrazec)
+							ind=0
+						} else {ind++}
+						break;
+				
+					default:
+						ind=0
+						break;
+				}
+				//objEl.push(`${key}`,`${value}`)
+				// if (key[7]!=ind&&key[0]==='p'&&key[10]==='m') {
+				// 	imgip ='http://img.starcombats.com/programs/' + value + '.gif'
+				// 	//console.log(`${key}:${value}`)
+				// } else if (key[0]==='p'&&key[14]==='c'){
+				// 	curren=value
+				// } else if (key[0]==='p'&&key[14]==='m'){
+				// 	maxcu=value
+				// } else if ((key[0]==='p'&&key[9]==='n')){
+				// 	nameip=value;
+				// 	if (Number(ind)<=4) {
+				// 	this.plagin.push({plimg:imgip, name: nameip + ' ('+curren+'/'+maxcu+')'})
+				// 	} else {
+				// 	this.neyro.push({plimg:imgip, name: nameip + ' ('+curren+'/'+maxcu+')'})	
+				// 	}
+				// } 
+				ind=Number(key[7])
+			 }
+		}
 	},
 	template:`<section v-if="status" id="info__ship">
             <div class="ship--left_bar">
@@ -294,7 +342,7 @@ const shipDisplay = new Vue({
             </div>
             <div class="ship--body">
                 <div class="ship_body" >
-                    <img :src="craft_Img">
+                    <img :src="craft_img">
                 </div>
                 <div class="ship_body--moduls" >
                     <div v-for="part in moduls">
@@ -465,13 +513,7 @@ console.log(text)
 let top_id_show =()=>{
 	
 }
-function btn_hover(elem) {
-	elem.setAttribute('src', './info_img/btn_ii_hover.gif');
-  }
-function btn_unhover(elem) {
-	console.log(elem)
-	elem.setAttribute('src', './info_img/btn_ii.gif');
-  }
+
 function iskin_req()
 { 
   var respons =  { 'virus_name': 'Пролог7','virus_level': '7','virus_born': '2023-09-05 18:59:52','virus_capacity': '1','virus_speed': '25','virus_tactics': '0','virus_intelligence': '0','virus_victories': '1134','virus_loses': '506','virus_avatar': '3','program1_img': 'void','program1_id': '1','program1_life_current': '0','program1_life_max': '0','program1_name': 'Плагин','program2_img': 'void','program2_id': '1','program2_life_current': '0','program2_life_max': '0','program2_name': 'Плагин','program3_img': 'void','program3_id': '1','program3_life_current': '0','program3_life_max': '0','program3_name': 'Плагин','program4_img': 'void','program4_id': '1','program4_life_current': '0','program4_life_max': '0','program4_name': 'Плагин','program5_img': 'void','program5_id': '1','program5_life_current': '0','program5_life_max': '0','program5_name': 'Плагин','program6_img': 'void','program6_id': '1','program6_life_current': '0','program6_life_max': '0','program6_name': 'Плагин','program7_img': 'void','program7_id': '1','program7_life_current': '0','program7_life_max': '0','program7_name': 'Плагин','program8_img': 'void','program8_id': '1','program8_life_current': '0','program8_life_max': '0','program8_name': 'Плагин','energy_max': '10','energy_current': '10' }
@@ -541,6 +583,44 @@ function iskin_req()
 // 	}
 // console.log(respons)
  iskinDisplay.loadData(respons)
+}
+function ship_req(){
+	let respons={
+		'craft_img':'Snow_ship_anim1',
+	'gun1_name':'Лазер Порядка','gun1_url':'http://img.starcombats.com/things_new/art_laser1_to20.gif',
+		'gun1_lvl':'(20)','gun1_status':'(артефакт)','gun1_up':'',
+		'gun1_modif':'Встроен имплантант', 'gun1_life_current':'860','gun1_life_max':'5000',
+	'gun2_name':'Лазер Порядка','gun2_url':'http://img.starcombats.com/things_new/art_laser1_to20.gif',
+		'gun2_lvl':'(20)','gun2_status':'(артефакт)','gun2_up':'UP',
+		'gun2_modif':'Встроен имплантант', 'gun2_life_current':'860','gun2_life_max':'5000',
+	'navig_name':'Frequency Targeting','navig_url':'http://img.starcombats.com/things_new/n_1166_to20.gif',
+		'navig_lvl':'(20)','navig_status':'(артефакт)','navig_up':'',
+		'navig_modif':'Встроен имплантант', 'navig_life_current':'860','navig_life_max':'5000',
+	'comp_name':'Лазер Порядка','comp_url':'http://img.starcombats.com/things_new/cc_06_c1_to20.gif',
+		'comp_lvl':'(20)','comp_status':'(артефакт)','comp_up':'',
+		'comp_modif':'Встроен имплантант', 'comp_life_current':'860','comp_life_max':'5000',
+	'radar_name':'Лазер Порядка','radar_url':'http://img.starcombats.com/things_new/rr_1665_c35_to20.gif',
+		'radar_lvl':'(20)','gun1_status':'(артефакт)','radar_up':'',
+		'radar_modif':'Встроен имплантант', 'radar_life_current':'860','radar_life_max':'5000',
+	'react_name':'Frequency Targeting','react_url':'http://img.starcombats.com/things_new/rr_166_c33_to20.gif',
+		'react_lvl':'(20)','react_status':'(артефакт)','react_up':'',
+		'react_modif':'Встроен имплантант', 'react_life_current':'860','react_life_max':'5000',
+	'shield_name':'Лазер Порядка','shield_url':'http://img.starcombats.com/things_new/rsh_1555_to20.gif',
+		'shield_lvl':'(20)','shield_status':'(артефакт)','shield_up':'',
+		'shield_modif':'Встроен имплантант', 'shield_life_current':'860','shield_life_max':'5000',
+	'engine_name':'Лазер Порядка','engine_url':'http://img.starcombats.com/things/re_1555_to20.gif',
+		'engine_lvl':'(20)','engine_status':'(артефакт)','engine_up':'',
+		'engine_modif':'Встроен имплантант', 'engine_life_current':'860','engine_life_max':'5000',
+	'mod1_name':'Лазер Порядка','mod1_url':'http://img.starcombats.com/things_new/arch_mod_20_Mihai.gif',
+		'mod1_lvl':'(20)','mod1_status':'(артефакт)','mod1_up':'',
+		'mod1_modif':'Встроен имплантант', 'mod1_life_current':'860','mod1_life_max':'5000',
+	'mod2_name':'Лазер Порядка','mod2_url':'http://img.starcombats.com/things_new/arch_gv_mod_20_Miha.gif',
+		'mod2_lvl':'(20)','mod2_status':'(артефакт)','mod2_up':'',
+		'mod2_modif':'Встроен имплантант', 'mod2_life_current':'860','mod2_life_max':'5000',
+	'mod3_name':'Лазер Порядка','mod3_url':'http://img.starcombats.com/things_new/arch_mod_20_Miha.gif',
+		'mod3_lvl':'(20)','mod3_status':'(артефакт)','mod3_up':'',
+		'mod3_modif':'Встроен имплантант', 'mod3_life_current':'860','mod3_life_max':'5000'}
+	shipDisplay.setElemint(respons)
 }
 /*{ 'count': 2,'items': [ { 
 	'item_id': '5418535',
