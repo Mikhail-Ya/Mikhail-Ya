@@ -452,7 +452,7 @@ li {
 /* */
 #info__iskin {
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
     display: grid;
     margin-top: 5px;
     grid-template-rows: 70px 280px 1fr;
