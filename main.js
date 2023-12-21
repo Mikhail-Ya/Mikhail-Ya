@@ -109,10 +109,11 @@ const propertyElemBar = new Vue({
                 </div>`
 })
 
-const topsElemetsBar = new Vue({
-	el:'#top-bar',
+const topsElemets = new Vue({
+	el:'#info__top',
 	data:{
-		getImg:[],
+		elemBar:[],
+		topList:[],
 		rotateImg:true
 		},
 	methods:{
@@ -122,31 +123,19 @@ const topsElemetsBar = new Vue({
 			document.querySelector('#top_info-title img').title=top.title
 			gettopList()
 		},
-		obnov(elem){
+		setElemBar(elem){
 			if (elem) {
 				this.getImg=[]
 				for (var i = 0; i < elem.length; i++) {
 					var objEl = elem[i]
-					this.getImg.push(objEl)
+					this.elemBar.push(objEl)
 				}
-				if (this.getImg.length<5) {
+				if (this.elemBar.length<5) {
 					this.rotateImg = true
 				} else { this.rotateImg = false }
 			}
-		}
-	},
-	template:`<div id="top-bar">
-				<img v-for="im in getImg" @click="getTop(im)" :src="im.url" :alt="im.alt" :title="im.title" v-bind:class="{rotat_topimg:rotateImg}">
-			  </div>`
-})
-
-const apptopList = new Vue({
-	el:'.top_display--list',
-	data:{
-		topList:[]
-	},
-	methods:{
-		obnov(elem){
+		},
+		setTopList(elem){
 			if (elem) {
 				this.topList=[]
 				for (var i = 0; i < elem.length; i++) {
@@ -156,19 +145,24 @@ const apptopList = new Vue({
 			}
 		}
 	},
-	template:`<ul class="top_display--list">
-				<li v-for="pers in topList">
+	template:`<section id="info__top">
+				<ul class="top_display--list">
+					<li v-for="pers in topList">
 						<div>            
-                        	<span>{{pers.num+" "}}</span>
-                        	<img class="top_display--list_clan" :src="pers.klanImg" alt="">
-                        	<img class="top_display--list_sklon" :src="pers.sklonImg" alt="">
-                        	<span>{{pers.name}}</span>
-                        	<img class="top_display--list_info" :src="pers.urlInfo" alt="">
-                        </div>
-                        <span>{{pers.stats}}</span>
-                    </li>
-			  </ul>`
-}) 
+							<span>{{pers.num+" "}}</span>
+							<img class="top_display--list_clan" :src="pers.klanImg" alt="">
+							<img class="top_display--list_sklon" :src="pers.sklonImg" alt="">
+							<span>{{pers.name}}</span>
+							<img class="top_display--list_info" :src="pers.urlInfo" alt="">
+						</div>
+						<span>{{pers.stats}}</span>
+					</li>
+	  			</ul>
+				<div id="top-bar">
+					<img v-for="im in elemBar" @click="getTop(im)" :src="im.url" :alt="im.alt" :title="im.title" v-bind:class="{rotat_topimg:rotateImg}">
+	  			</div>
+			</section>`
+})
 
 const iskinDisplay = new Vue({
 	el:'#info__iskin',
@@ -385,7 +379,7 @@ const messageWin = new Vue({
 })
 
 setTimeout(()=>{
-			topsElemetsBar.obnov([
+			topsElemets.setElemBar([
 				{url:"http://img.starcombats.com/top/top100.gif",
 						alt:'Топ 100',
 						title:'Топ 100'},
@@ -435,7 +429,7 @@ let gettopList=()=>{
 				 sklonImg:'http://img.starcombats.com/tendencydark.gif',name:'Гога',
 				 urlInfo:'http://img.starcombats.com/design/info_rus.gif',stats:'12'}
 		]
-	apptopList.obnov(responList)
+	topsElemets.setTopList(responList)
 }
 let appPropertyList=(nameList)=>{
 		var statesList = []
@@ -479,7 +473,7 @@ let appPropertyList=(nameList)=>{
 		propertyDisplay.obnov(statesList)
 }
 appPropertyList()
-let zapros =()=>{
+/*let zapros =()=>{
     var req = new Subsys_JsHttpRequest_Js()
 		req.onreadystatechange = function()
 		{
@@ -499,7 +493,7 @@ console.log(text)
 		req.open('POST', 'http://foggystation.starcombats.com/ajax/info/info_present.php', true);
 		req.send({id: 1189944, ix: Math.random()});
         console.log(req.responseJS)
-}
+}*/
 
 let top_id_show =()=>{
 	
