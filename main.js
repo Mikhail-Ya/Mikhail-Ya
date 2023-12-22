@@ -211,7 +211,7 @@ const iskinDisplay = new Vue({
 	},
 	template:`<section v-if="status" id="info__iskin">
             <div class="info_iskin--plagin" >
-                <div v-for="(pl,index) in plagin">
+                <div v-for="(pl,index) in plagin" class="glass">
                     <img :src="pl.plimg" :alt="pl.name" :title="pl.name">
                 </div>
             </div>
@@ -223,10 +223,10 @@ const iskinDisplay = new Vue({
                     </div>
                     <span>90/90</span>
                 </div>
-                <img id="iskin_img" :src="ava" alt="48" title="48">
+                <img id="iskin_img" class="glass" :src="ava" :alt="ii.virus_name" :title="ii.virus_name">
             </div>
             <div class="info_iskin--plagin2" >
-                <div v-for="(pl,index) in neyro">
+                <div v-for="(pl,index) in neyro" class="glass">
                     <img :src="pl.plimg" :alt="pl.name" :title="pl.name">
                 </div>
             </div>
@@ -237,7 +237,10 @@ const iskinDisplay = new Vue({
                     <li><span>Поражения: {{stat.virus_loses}}</span> <span>Победы: {{stat.virus_victories}}</span></li>
                 </ul>
             </div>
-            <div class="iskin_name" v-for="ik in ii" ><div>Имя искина: <span>{{ik.virus_name}} ({{ik.virus_level}})</span></div><div>Дата создания: <span>{{ik.virus_born}}</span></div></div>
+            <div class="iskin_name" v-for="ik in ii" >
+				<div>Имя искина: <span>{{ik.virus_name}} ({{ik.virus_level}})</span></div>
+				<div>Дата создания: <span>{{ik.virus_born}}</span></div>
+			</div>
         </section>`
 })
 
@@ -321,22 +324,22 @@ const shipDisplay = new Vue({
 	},
 	template:`<section v-if="status" id="info__ship">
             <div class="ship--left_bar">
-                <div v-for="part in leftBar">
+                <div v-for="part in leftBar" class="glass">
                      <img :src="part.url"  :alt="part.name +' ('+ part.life_cur+'/'+part.life_max+') '+ part.modif" :title="part.name +' ('+ part.life_cur+'/'+part.life_max+') '+ part.modif">
                 </div>
             </div>
             <div class="ship--body">
-                <div class="ship_body" >
+                <div class="ship_body glass" >
                     <img :src="craft_img">
                 </div>
                 <div class="ship_body--moduls" >
-                    <div v-for="part in moduls">
+                    <div v-for="part in moduls" class="glass">
                             <img :src="part.url" width="30" height="30" :alt="part.name +' ('+ part.life_cur+'/'+part.life_max+') '+ part.modif" :title="part.name +' ('+ part.life_cur+'/'+part.life_max+') '+ part.modif">
                     </div>
                 </div>
             </div>
             <div class="ship--right_bar">
-                <div v-for="part in rightBar">
+                <div v-for="part in rightBar" class="glass">
                         <img :src="part.url" :alt="part.name +' ('+ part.life_cur+'/'+part.life_max+') '+ part.modif" :title="part.name +' ('+ part.life_cur+'/'+part.life_max+') '+ part.modif">
                 </div>
             </div>
