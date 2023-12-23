@@ -48,34 +48,12 @@ const respectInfo = new Vue({
 			</div>
 		</div>`
 })
-const propertyDisplay = new Vue({
-	el: '#property__display',
-	data:{ 
-		showProperty:[]		
-	},
-	methods:{
-		obnov(elem){
-			if (elem) {
-				this.showProperty=[]
-				for (var i = 0; i < elem.length; i++) {
-					var objEl = elem[i]
-					this.showProperty.push(objEl)
-				}
-			}
-		}
-	},
-	template:`<ul class="property_display-show">
-                    <li v-for="el in showProperty">
-                    <span>{{el.name}}</span>
-                    <span>{{el.val}}</span>
-                    </li>
-                </ul>`
-})
 
-const propertyElemBar = new Vue({
-	el:'#property__bar',
+const propertyElements = new Vue({
+	el:'#info__property',
 	data:{
-		getImg:[
+		propertyList:[],
+		propertyImg:[
 			{name:'states',
 				url:'http://img.starcombats.com/characteristics/inf2.gif',
 				title:'Статы корабля'},
@@ -91,22 +69,39 @@ const propertyElemBar = new Vue({
 		]
 	},
 	methods:{
-		disp: function(act){
-			var getImg = this.getImg
+		disp(act){
+			var getImg = this.propertyImg
 			for (var i = 0; i < getImg.length; i++) {
 				var disId = getImg[i].name 
 				if (act===disId) {
-					document.querySelector('#stats-title img').src = this.getImg[i].url
-					document.querySelector('#stats-title span').textContent = this.getImg[i].title
+					document.querySelector('#stats-title img').src = getImg[i].url
+					document.querySelector('#stats-title span').textContent = getImg[i].title
 				}
 			}
-			appPropertyList(act)
+			getPropertyList(act)
+		},
+		obnov(elem){
+			if (elem) {
+				this.propertyList=[]
+				for (var i = 0; i < elem.length; i++) {
+					var objEl = elem[i]
+					this.propertyList.push(objEl)
+				}
+			}
 		}
 	},
-	template:`<div id="property__bar">
-                    <img v-for="elem in getImg" :src="elem.url" :alt="elem.title"
+	template:`<section id="info__property">
+				<div id="property__bar">
+                    <img v-for="elem in propertyImg" :src="elem.url" :alt="elem.title"
                         :title="elem.title" @click="disp(elem.name)">
-                </div>`
+                </div>
+				<ul class="property_display-show">
+                    <li v-for="el in propertyList">
+                    <span>{{el.name}}</span>
+                    <span>{{el.val}}</span>
+                    </li>
+                </ul>
+			</section>`
 })
 
 const topsElemets = new Vue({
@@ -172,7 +167,7 @@ const iskinDisplay = new Vue({
 		neyro:[],
 		ava:'',
 		indicat:'',
-		status: false
+		status: true
 	},
 	methods:{
 		loadData(response){
@@ -434,7 +429,7 @@ let gettopList=()=>{
 		]
 	topsElemets.setTopList(responList)
 }
-let appPropertyList=(nameList)=>{
+let getPropertyList=(nameList)=>{
 		var statesList = []
 			switch(nameList){
 			case 'states':
@@ -451,19 +446,6 @@ let appPropertyList=(nameList)=>{
 					break
 			case 'specifications':
 				messageWin.setMessage('Данная информация доступна только игроку или администрации',true)
-				/*statesList=[{name:'Наносимый урон:',val:'9365 - 10667'},
-                    {name:'Броня:',val:'8799/8799/8799/8799'},
-                    {name:'Мф. крита:',val:'50596'},
-                    {name:'Мф. антикрита:',val:'55329'},
-                    {name:'Мф. уворота:',val:'46516'},
-                    {name:'Мф. антиуворота:',val:'29829'},
-                    {name:'Мф. мощности крита:',val:'14515'},
-                    {name:'Мф. защиты:',val:'27165'},
-                    {name:'Мф. контратаки:',val:'12115'},
-                    {name:'Мф. антиброни:',val:'32935'},
-                    {name:'Мф. мощности урона:',val:'39400'},
-                    {name:'Резист к урону:',val:'178%'},
-                    {name:'Резист к техномагии:',val:'178%'}]*/
                     break
             case 'statistic':
             	statesList=[]
@@ -473,31 +455,8 @@ let appPropertyList=(nameList)=>{
             		statesList=[]
             		break
 			}
-		propertyDisplay.obnov(statesList)
+		propertyElements.obnov(statesList)
 }
-appPropertyList()
-/*let zapros =()=>{
-    var req = new Subsys_JsHttpRequest_Js()
-		req.onreadystatechange = function()
-		{
-			if (req.readyState == 4)
-			{
-				if (req.responseJS.text == null)
-				  text = '';
-				else
-				  text = req.responseJS.text;
-        // document.getElementById("present_full").innerHTML = text;
-console.log(text)
-				// change_present_div();
-				present_show = true;
-			}
-		}
-
-		req.open('POST', 'http://foggystation.starcombats.com/ajax/info/info_present.php', true);
-		req.send({id: 1189944, ix: Math.random()});
-        console.log(req.responseJS)
-}*/
-
 let top_id_show =()=>{
 	
 }
